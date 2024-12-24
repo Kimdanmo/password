@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 입력</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            transition: background-color 0.5s;
+        }
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .key {
+            width: 100px;
+            height: 100px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ccc;
+            cursor: pointer;
+            border: 1px solid #999;
+        }
+        #password {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #check {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="password">비밀번호를 입력하세요.</div>
+    <div class="keypad">
+        <div class="key" onclick="addNumber(1)">1</div>
+        <div class="key" onclick="addNumber(2)">2</div>
+        <div class="key" onclick="addNumber(3)">3</div>
+        <div class="key" onclick="addNumber(4)">4</div>
+        <div class="key" onclick="addNumber(5)">5</div>
+        <div class="key" onclick="addNumber(6)">6</div>
+        <div class="key" onclick="addNumber(7)">7</div>
+        <div class="key" onclick="addNumber(8)">8</div>
+        <div class="key" onclick="addNumber(9)">9</div>
+        <div class="key" onclick="addNumber(0)">0</div>
+    </div>
+    <button id="check" onclick="checkPassword()">확인</button>
+
+    <audio id="success-sound" src="성공.mp3"></audio>
+    <audio id="failure-sound" src="실패.mp3"></audio>
+
+    <script>
+        let input = '';
+        const correctPassword = '1234'; // 올바른 비밀번호
+        const passwordDisplay = document.getElementById('password');
+        const successSound = document.getElementById('success-sound');
+        const failureSound = document.getElementById('failure-sound');
+
+        // 성공 효과음 볼륨을 최대값으로 설정
+        successSound.volume = 1.0; // 볼륨을 100%로 설정
+
+        function addNumber(num) {
+            if (input.length < 4) {
+                input += num;
+                updateDisplay();
+            }
+        }
+
+        function updateDisplay() {
+            passwordDisplay.textContent = input.replace(/./g, '*');
+        }
+
+        function checkPassword() {
+            if (input === correctPassword) {
+                successSound.play();
+                document.body.style.backgroundColor = 'green';
+                setTimeout(() => {
+                    document.body.style.backgroundColor = '#f0f0f0';
+                }, 2000);
+                alert('비밀번호가 올바릅니다!');
+            } else {
+                failureSound.play();
+                document.body.style.backgroundColor = 'red';
+                setTimeout(() => {
+                    document.body.style.backgroundColor = '#EF8B8B'; // 조금 빨개진 하얀색으로 변경
+                }, 2000);
+            }
+            input = ''; // 입력 초기화
+            updateDisplay();
+        }
+    </script>
+
+</body>
+</html>

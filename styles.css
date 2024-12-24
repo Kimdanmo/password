@@ -1,0 +1,83 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Arial', sans-serif; /* 현대적인 글꼴 */
+}
+
+#password {
+    color: #333; /* 어두운 회색 텍스트 */
+    padding: 15px; /* 여백 추가 */
+    font-size: 24px; /* 폰트 크기 설정 */
+    border: 2px solid #007BFF; /* 파란색 테두리 */
+    border-radius: 10px; /* 테두리 둥글게 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 그림자 효과 */
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 100px); /* 3열 그리드 설정 */
+    gap: 10px; /* 격자 간격 */
+    margin-top: 20px; /* 여백 위에 추가 */
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.1)); /* 그리드 그림자 효과 */
+}
+
+.key {
+    width: 100px; /* 키 너비 */
+    height: 100px; /* 키 높이 */
+    font-size: 24px; /* 글씨 크기 */
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    background-color: #9DE2D0; /* 연한 파란색 배경 */
+    cursor: pointer; /* 마우스 커서 */
+    border: 1px solid #007BFF; /* 파란색 테두리 */
+    border-radius: 10px; /* 테두리 둥글게 */
+    transition: background-color 0.3s, transform 0.2s; /* 배경색과 변형의 부드러운 전환 */
+}
+
+.key:hover {
+    background-color: #70C1B3; /* 호버 시 진한 파란색 */
+    transform: scale(1.05); /* 호버 시 약간 커지기 */
+}
+
+#check {
+    margin-top: 20px; /* 여백 위에 추가 */
+    padding: 10px 20px; /* 패딩 설정 */
+    font-size: 20px; /* 글씨 크기 */
+    background-color: #007BFF; /* 대비 색상 */
+    color: white; /* 텍스트 색상 흰색 */
+    border: none; /* 테두리 없음 */
+    border-radius: 10px; /* 테두리 둥글게 */
+    cursor: pointer; /* 마우스 커서 */
+    transition: background-color 0.3s, box-shadow 0.3s; /* 전환 효과 */
+}
+
+#check:hover {
+    background-color: #d50000; /* 호버 시 더 어두운 파란색 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+    .keypad {
+        grid-template-columns: repeat(3, 70px); /* 키패드 열 크기 조정 */
+    }
+    .key {
+        width: 70px; /* 작은 화면에서 키 너비 */
+        height: 70px; /* 작은 화면에서 키 높이 */
+        font-size: 20px; /* 작은 화면에서 글씨 크기 */
+    }
+    
+    #password {
+        font-size: 20px; /* 작은 화면에서 글씨 크기 조정 */
+        padding: 10px; /* 여백 조정 */
+    }
+
+    #check {
+        font-size: 18px; /* 버튼 글씨 크기 조정 */
+        padding: 8px 16px; /* 버튼 패딩 조정 */
+    }
+}
